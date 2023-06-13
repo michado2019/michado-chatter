@@ -1,29 +1,15 @@
+import { useContext } from "react";
 import "./Navbar.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { NavbarLink } from "./navbarData/NavbarData";
+import { MenuOutlined, CancelOutlined } from "@mui/icons-material";
+import { CustomNavLink } from "../hooks/CustomNavLink";
+import { SwitchContext } from "../contexts/switchContext/SwitchContext";
 
-type CustomNavLinkProps = {
-  children: React.ReactNode;
-  className: string;
-};
-type ToProps = {
-  to: string;
-};
-const CustomNavLink = ({ to, ...props }: ToProps & CustomNavLinkProps) => {
-  const activeStyle = {
-    color: "#5d5d5d",
-    transition: "all 0.3s ease-in-out",
-  };
-  return (
-    <NavLink
-      style={({ isActive }) => (isActive ? activeStyle : {})}
-      to={to}
-      end
-      {...props}
-    />
-  );
-};
 const Navbar = (props: NavbarLink) => {
+  //useContexts
+  const switchContext = useContext(SwitchContext); // This is a useContext for switch of navbar
+
   return (
     <div className="navbarWrapper">
       <div className="navbarContents">
@@ -55,6 +41,19 @@ const Navbar = (props: NavbarLink) => {
           >
             Sign up
           </Link>
+        </div>
+        <div className="navbarMenu-div">
+          {switchContext?.state ? (
+            <CancelOutlined
+              className="navbarMenu"
+              onClick={() => switchContext?.setState(!switchContext?.state)}
+            />
+          ) : (
+            <MenuOutlined
+              className="navbarMenu"
+              onClick={() => switchContext?.setState(!switchContext?.state)}
+            />
+          )}
         </div>
       </div>
     </div>

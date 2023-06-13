@@ -1,5 +1,5 @@
+//Types for navbar links
 export interface NavbarLink {
-
   navbarLinks: {
     id: number;
     link: string;
@@ -7,6 +7,7 @@ export interface NavbarLink {
   }[];
 }
 
+//Navbar links array of objects
 export const navbarLinks = [
   {
     id: 1,

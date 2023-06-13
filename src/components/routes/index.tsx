@@ -1,18 +1,17 @@
-import React from 'react'
-import './index.css'
-import { Routes, Route } from 'react-router-dom'
-import Home from '../pages/home/Home'
-import About from '../pages/about/About'
-const AppRouter = () => {
+import "./index.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "../pages/home/Home";
+import About from "../pages/about/About";
 
+const AppRouter = () => {
   return (
     <div className="appRouter-wrapper">
-       <Routes>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<About />} />
-       </Routes>
+      </Routes>
     </div>
-  )
-}
+  );
+};
 
-export default AppRouter
+export default AppRouter;
