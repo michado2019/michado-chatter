@@ -56,10 +56,18 @@ const SmallScreenNav = (props: NavbarLink) => {
           </Link>
         </div>
         <div className="smallScreen-social_div">
+          <a href="https://github.com/michado2019">
           <GitHub className="smallScreen-social_icon" />
+          </a>
+          <a href="https://twitter.com/Mike_Adeshina">
           <Twitter className="smallScreen-social_icon" />
+          </a>
+          <a href="https://www.linkedin.com/in/michado2019">
           <LinkedIn className="smallScreen-social_icon" />
+          </a>
+          <a href="mailto: adeshinaobafemi09@gmail.com">
           <Email className="smallScreen-social_icon" />
+          </a>
         </div>
       </div>
     </div>
