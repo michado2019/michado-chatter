@@ -1,14 +1,12 @@
-import './Home.css'
 import Navbar from '../../navbar/Navbar'
+import './About.css'
 import { navbarLinks } from '../../navbar/navbarData/NavbarData'
-const Home = () => {
-
-  
+const About = () => {
   return (
     <div>
-        <Navbar navbarLinks={navbarLinks}  />
+        <Navbar navbarLinks={navbarLinks}/>
     </div>
   )
 }
 
-export default Home
+export default About
