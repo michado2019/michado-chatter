@@ -5,6 +5,7 @@ const About = () => {
   return (
     <div className="aboutWrapper">
       <Navbar navbarLinks={navbarLinks} />
+      <p>About us page</p>
     </div>
   );
 };

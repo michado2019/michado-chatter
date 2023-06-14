@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import "./SmallScreenNav.css";
 import { SwitchContext } from "../../contexts/switchContext/SwitchContext";
 import { Link } from "react-router-dom";
@@ -6,10 +5,32 @@ import { CustomNavLink } from "../../hooks/CustomNavLink";
 import { NavbarLink } from "../navbarData/NavbarData";
 import { Avatar } from "@mui/material";
 import { Email, GitHub, LinkedIn, Twitter } from "@mui/icons-material";
+import { useContext, useEffect, useState } from "react";
+
+type UserDataType = {
+  user: {
+    firstName: string;
+    lastName: string;
+    email: string;
+  };
+};
 
 const SmallScreenNav = (props: NavbarLink) => {
   //useContexts
   const switchContext = useContext(SwitchContext); // This is a useContext for switch of navbar
+  const [user, setUser] = useState<UserDataType | null>(null);
+
+  useEffect(() => {
+    //Retrieve user data from the localStorage
+    const userData = localStorage.getItem("user");
+    if (userData !== null) {
+      const parsedUserData = JSON.parse(userData);
+      setUser(parsedUserData);
+    }
+  }, []);
+
+  console.log(user);
+
   return (
     <div
       className="smallScreenNav-wrapper"
@@ -19,10 +40,20 @@ const SmallScreenNav = (props: NavbarLink) => {
       }}
     >
       <div className="smallScreenNav-contents">
-        <div className="smallUser-div">
-          <Avatar className="smallScreen-user_avatar" />
-          <h2 className="smallScreen-user_name">Chatter</h2>
-        </div>
+        {user === null ? (
+          <div className="smallUser-div">
+            <Avatar className="smallScreen-user_avatar" />
+            <h2 className="smallScreen-user_name">Chatter</h2>
+          </div>
+        ) : (
+          <div className="smallUser-div">
+            <Avatar className="smallScreen-user_avatar" />
+            <h2 className="smallScreen-user_name">
+              {user.user.firstName} {user.user.lastName}
+            </h2>
+          </div>
+        )}
+
         <ul className="smallScreenLinksOne">
           {props.navbarLinks.map((smallScreenLink) => {
             return (
@@ -57,16 +88,16 @@ const SmallScreenNav = (props: NavbarLink) => {
         </div>
         <div className="smallScreen-social_div">
           <a href="https://github.com/michado2019">
-          <GitHub className="smallScreen-social_icon" />
+            <GitHub className="smallScreen-social_icon" />
           </a>
           <a href="https://twitter.com/Mike_Adeshina">
-          <Twitter className="smallScreen-social_icon" />
+            <Twitter className="smallScreen-social_icon" />
           </a>
           <a href="https://www.linkedin.com/in/michado2019">
-          <LinkedIn className="smallScreen-social_icon" />
+            <LinkedIn className="smallScreen-social_icon" />
           </a>
           <a href="mailto: adeshinaobafemi09@gmail.com">
-          <Email className="smallScreen-social_icon" />
+            <Email className="smallScreen-social_icon" />
           </a>
         </div>
       </div>
